@@ -1,0 +1,15 @@
+{
+  "name": "gestordeferreteria",
+  "version": "1.0.0",
+  "description": "Para ejecutar el proyecto, debes tener instalado el entorno de desarrollo de C++ de Visual Studio 2019.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "Luxing",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^32.0.2"
+  }
+}
