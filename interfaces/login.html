@@ -4,18 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/login.css">
+    
     <title>Login</title>
 </head>
 <body>
     <img src="../public/muro.jpg" alt="" class="muro">
     <div class="formulario">
+        </form>
             <label for="usuario">Usuario:</label>
             <input type="text" id="usuario" name="usuario" required>
             <label for="password">Contraseña:</label>
             <input type="password" id="password" name="password" required>
-            <button class="boton" type="button" onclick="window.location.href='./factura.html'">Entrar</button>
+            <h3 id="error" style="display: none;">Usuario o contraseña incorrectos</h3>
+            <button class="boton" type="button" onclick="getAllUsers()">Entrar</button>
         </form>
         
+        
     </div>
+    
 </body>
+<script src="../connection.js"></script>
 </html>

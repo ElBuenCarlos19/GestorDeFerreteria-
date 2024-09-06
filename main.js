@@ -1,21 +1,23 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow } = require("electron");
+const { getAllRoles, insertRole } = require("./connection");
 
-function createWindow () {
+function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true
-    }
-  })
+      nodeIntegration: true,
+    },
+  });
 
-  win.loadFile('interfaces/login.html')
+  win.loadFile("interfaces/login.html");
 }
 
 app.whenReady().then(() => {
-  createWindow()
-})
+  createWindow();
+  
+});
 
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit()
-})
+app.on("window-all-closed", function () {
+  if (process.platform !== "darwin") app.quit();
+});
