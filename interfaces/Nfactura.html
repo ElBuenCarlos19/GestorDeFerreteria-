@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Factura</title>
+    <link rel="stylesheet" href="../styles/Nfactura.css">
+</head>
+<body>
+    <div class="container">
+        <div class="invoice-box">
+            <h2>Nueva Factura</h2>
+            <form>
+                <div class="form-row">
+                    <label for="cliente">Cliente:</label>
+                    <select id="cliente">
+                        <option value="">Selecciona un cliente</option>
+                        <option value="cliente1">Cliente 1</option>
+                        <option value="cliente2">Cliente 2</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="vendedor">Vendedor:</label>
+                    <input type="text" id="vendedor" value="Fer Ware">
+                </div>
+                <div class="form-row">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" id="telefono" placeholder="Teléfono">
+                </div>
+                <div class="form-row">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="Email">
+                </div>
+                <div class="form-row">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" value="2022-06-07">
+                </div>
+                <div class="form-row">
+                    <label for="pago">Pago:</label>
+                    <select id="pago">
+                        <option value="efectivo">Efectivo</option>
+                        <option value="tarjeta">Tarjeta</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button">+ Nuevo producto</button>
+                    <button type="button">+ Nuevo cliente</button>
+                    <button type="button">Agregar productos</button>
+                    <button type="button">Imprimir</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
