@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/login.css">
-    
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+
     <title>Login</title>
 </head>
 <body>
@@ -16,12 +17,31 @@
             <label for="password">Contraseña:</label>
             <input type="password" id="password" name="password" required>
             <h3 id="error" style="display: none;">Usuario o contraseña incorrectos</h3>
-            <button class="boton" type="button" onclick="getAllUsers()">Entrar</button>
-        </form>
-        
-        
+            
+        </form>  
+        <button class="boton" type="button" onclick="send()">Entrar</button>
     </div>
-    
+    <script >
+        const { ipcRenderer } = require('electron');
+        function send() {
+    const username = document.getElementById("usuario").value;
+    const password = document.getElementById("password").value;
+    ipcRenderer.send('sendvalidationusuario', {username, password});
+    ipcRenderer.on('returnvalidationusuario', (event, data) => {
+      if(data === "Acceso exitoso"){
+        window.location.href = "./producto.html";
+      }else if(data === "Acceso denegado"){
+        alert("Credenciales incorrectas");
+      }
+    })
+
+
+}
+
+
+
+
+    </script>
+
 </body>
-<script src="../connection.js"></script>
 </html>
