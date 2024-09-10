@@ -30,14 +30,19 @@
             <div class="search-box">
                 <label for="search">Codigo o Nombre</label>
                 <input type="text" id="search" placeholder="Codigo del producto o Nombre">
-                <button>Buscar</button>
+                <button id="search-btn" onclick="send()">Buscar</button>
                 <button class="new-invoice">+ Nueva Producto</button>
             </div>
+        </div>
+        <div class="table-container" id="table-container">
+
         </div>
     </main>
 
     <footer>
         <p>© 2024 - Luxing</p>
     </footer>
+
+    <script src="../scripts/scripts_interfaces/producto.js"></script>
 </body>
 </html>

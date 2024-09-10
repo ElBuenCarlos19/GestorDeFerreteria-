@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const { verificarCredenciales } = require("./scripts/validator");
+const { searchProduct } = require("./scripts/search");
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -28,6 +29,15 @@ function createWindow() {
       }
     } catch (error) {
       console.error("Error al verificar credenciales:", error.message);
+    }
+  });
+
+  ipcMain.on("sendsearchproduct", async (event, data) => {
+    try {
+      const dataResult = await searchProduct(data.search, data.dataSearch);
+      win.webContents.send("returndata", dataResult);
+    } catch (error) {
+      console.error("Error al buscar producto:", error.message);
     }
   });
 }
