@@ -13,9 +13,12 @@ async function searchProduct(search, dataSearch) {
 }
 
 async function searchallrows(dataSearch) {
+    const tableName = dataSearch[0]; 
+    const columnsToSelect = dataSearch.slice(1).join(', '); 
+
     const { data, error } = await supabase
-            .from(dataSearch[0])
-            .select(dataSearch[1]); 
+            .from(tableName)
+            .select(columnsToSelect);
     if (error) {
         console.error("Error al buscar producto:", error.message);
     }
@@ -23,7 +26,16 @@ async function searchallrows(dataSearch) {
     return data;
 }
 
+async function insertOneRow(dataInsert) {
+    const { error } = await supabase
+  .from(dataInsert.table)
+  .insert(dataInsert.row)
+
+  return error;
+}
+
 module.exports = {
     searchProduct,
-    searchallrows
+    searchallrows,
+    insertOneRow
 }

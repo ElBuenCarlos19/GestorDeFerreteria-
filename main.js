@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const { verificarCredenciales } = require("./scripts/validator");
-const { searchProduct, searchallrows } = require("./scripts/search");
+const { searchProduct, searchallrows, insertOneRow } = require("./scripts/search");
 
 
 // Proceso de renderizado(Cliente) y proceso principal(node)
@@ -57,6 +57,16 @@ function createWindow() {
       win.webContents.send("returnalldata", dataResult);
     } catch (error) {
       console.error("Error al buscar producto:", error.message);
+    }
+  });
+
+  ipcMain.on("insertonerow", async (event, data) => {
+    try {
+       const error =await insertOneRow(data);
+       win.webContents.send("returninsert", error);
+      
+    } catch (error) {
+      console.error("Error al insertar producto:", error.message);
     }
   });
   

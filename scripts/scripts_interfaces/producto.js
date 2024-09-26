@@ -3,11 +3,11 @@ const { ipcRenderer } = require("electron");
 modal = document.getElementById("modal");
 const btnNuevaFactura = document.querySelector(".new-invoice");
 const spanClose = document.querySelector(".close");
-
 var opcionesJSON = [];
+var selectedProviderId;
 
 btnNuevaFactura.onclick = function () {
-  const dataSearch = ["provider", "providername"]; // 0 es nombre de la tabla, 1 es la columna a buscar
+  const dataSearch = ["provider","providerid", "providername"]; // 0 es nombre de la tabla, 1 es la columna a buscar
   ipcRenderer.send("sendsearchallrows", { dataSearch });
   modal.style.display = "flex";
 };
@@ -28,6 +28,29 @@ function send() {
   ipcRenderer.send("sendsearch", { search, dataSearch });
 }
 
+function agregarProducto(){
+    const codigo = document.getElementById("Codigo").value;
+    const nombre = document.getElementById("Nombre").value;
+    const descripcion = document.getElementById("Descripcion").value;
+    const cantidadInicial = document.getElementById("CantidadInicial").value;
+    const proveedor = document.getElementById("Proveedor").value;
+    console.log(codigo, nombre, descripcion, cantidadInicial, selectedProviderId);
+    const dataInsert = {
+        table: "product_inventory",
+        row: {
+            providerid: selectedProviderId,
+            productcode: codigo,
+            productname: nombre,
+            description: descripcion,
+            quantity: cantidadInicial
+        }
+    };
+
+    ipcRenderer.send("insertonerow", dataInsert);
+
+}
+
+
 ipcRenderer.on("returndata", (event, data) => {
   const miDiv = document.getElementById("table-container");
 
@@ -45,16 +68,29 @@ ipcRenderer.on("returnalldata", (event, data) => {
   opcionesJSON = data;
 });
 
-const searchInput = document.getElementById("search-input");
+ipcRenderer.on("returninsert", (event, error) => {
+if (!error){
+    document.getElementById("Codigo").value = "";
+    document.getElementById("Nombre").value = "";
+    document.getElementById("Descripcion").value = "";
+    document.getElementById("CantidadInicial").value = "";
+    document.getElementById("Proveedor").value = "";
+    alert("Producto insertado con éxito");
+}else{
+    alert("Error al insertar producto");
+}
+
+   
+});
+
+const searchInput = document.getElementById("Proveedor");
 const suggestionsList = document.getElementById("suggestions-list");
 
 searchInput.addEventListener("input", function () {
   const busqueda = this.value.toLowerCase();
-  console.log(opcionesJSON, "yo se cual soy")
   const opcionesFiltradas = opcionesJSON.filter((opcion) =>
     opcion.providername.toLowerCase().includes(busqueda)
   );
-
   mostrarSugerencias(opcionesFiltradas);
 });
 
@@ -67,6 +103,8 @@ function mostrarSugerencias(opciones) {
       li.textContent = opcion.providername;
       li.addEventListener("click", function () {
         searchInput.value = opcion.providername;
+        selectedProviderId = opcion.providerid;
+        
         suggestionsList.style.display = "none";
       });
       suggestionsList.appendChild(li);
@@ -77,7 +115,6 @@ function mostrarSugerencias(opciones) {
   }
 }
 
-// Ocultar sugerencias cuando se hace clic fuera del buscador
 document.addEventListener("click", function (event) {
   if (
     !searchInput.contains(event.target) &&
