@@ -6,12 +6,17 @@
     font-size:x-large;
 }
 .muro{  
-    width: 40%;
+    width: 50%;
     height: 100vh;
     float: right;
+    image-rendering: optimizeQuality;
+    background-position: center;
+	background-attachment: contain;
+	background-size: cover;
+    background-image: url("../public/muro.jpg");
 }
 .formulario{
-    width: 60%;
+    width: 50%;
     height: 100vh;
     padding: 20px;
     padding: 10%;
@@ -31,10 +36,10 @@
     width: 70%;  
 }
 .boton{
-    width: 25%;
+    width: 80px;
     margin-top: 15px;
     padding: 10px;
-    border-radius: 50px;
+    border-radius: 5px;
     background-color: #FEC00B;
     color: #ffffff;
     font-size: 20px;

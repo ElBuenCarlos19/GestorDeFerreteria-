@@ -1,20 +1,30 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const { verificarCredenciales } = require("./scripts/validator");
-const { searchProduct } = require("./scripts/search");
+const { searchProduct, searchallrows } = require("./scripts/search");
 
+
+// Proceso de renderizado(Cliente) y proceso principal(node)
 function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    resizable: false,
+    skipTaskbar: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
     },
   });
-
+  win.setMenuBarVisibility(false);
   win.loadFile("interfaces/login.html");
+  win.on('minimize', (event) => {
+    event.preventDefault();
+  });
 
+  win.on("closed", () => {
+    win = null;
+  });
   ipcMain.on("sendvalidationusuario", async (event, data) => {
     try {
       const resultado = await verificarCredenciales(
@@ -29,10 +39,10 @@ function createWindow() {
       }
     } catch (error) {
       console.error("Error al verificar credenciales:", error.message);
-    }
+    }0.
   });
 
-  ipcMain.on("sendsearchproduct", async (event, data) => {
+  ipcMain.on("sendsearch", async (event, data) => {
     try {
       const dataResult = await searchProduct(data.search, data.dataSearch);
       win.webContents.send("returndata", dataResult);
@@ -40,6 +50,16 @@ function createWindow() {
       console.error("Error al buscar producto:", error.message);
     }
   });
+
+  ipcMain.on("sendsearchallrows", async (event, data) => {
+    try {
+      const dataResult = await searchallrows(data.dataSearch);
+      win.webContents.send("returnalldata", dataResult);
+    } catch (error) {
+      console.error("Error al buscar producto:", error.message);
+    }
+  });
+  
 }
 
 app.whenReady().then(() => {

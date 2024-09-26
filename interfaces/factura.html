@@ -34,26 +34,28 @@
             id="search"
             placeholder="Nombre del cliente o # de factura"
           />
-          <button>Buscar</button>
+          <button id="search-btn" onclick="send()">Buscar</button>
           <button class="new-invoice">+ Nueva Factura</button>
         </div>
+      </div>
+      <div class="table-container" id="table-container">
+
       </div>
     </main>
 
     <div id="modal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <!-- Aquí se inserta la interfaz de nueva factura -->
         <div class="invoice-box">
           <h2>Nueva Factura</h2>
           <form>
             <div class="form-row">
               <label for="cliente">Cliente:</label>
-                <input type="text" id="cliente"  />
+              <input type="text" id="cliente" />
             </div>
             <div class="form-row">
               <label for="vendedor">Vendedor:</label>
-              <input type="text" id="vendedor"  />
+              <input type="text" id="vendedor" />
             </div>
             <div class="form-row">
               <label for="telefono">Teléfono:</label>
@@ -86,6 +88,6 @@
     <footer>
       <p>© 2024 - Luxing</p>
     </footer>
-    <script src="../scripts/Nfactura.js"></script>
+    <script src="../scripts/scripts_interfaces/factura.js"></script>
   </body>
 </html>

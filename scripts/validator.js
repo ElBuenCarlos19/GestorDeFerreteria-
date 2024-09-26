@@ -2,7 +2,6 @@ const { supabase } = require("../connection");
 
 async function verificarCredenciales(username, password) {
     try {
-
         const { data, error } = await supabase
             .from("users")
             .select("username, password")

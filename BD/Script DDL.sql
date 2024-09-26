@@ -35,6 +35,7 @@ CREATE TABLE Invoice (
     DateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     TotalAmount DECIMAL(10, 2) NOT NULL,
     PaymentMethod VARCHAR(100) NOT NULL,
+    InvoiceCode VARCHAR(100) NOT NULL,
     PRIMARY KEY (InvoiceID),
     FOREIGN KEY (ClientID) REFERENCES Client(ClientID),
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
