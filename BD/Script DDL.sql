@@ -24,7 +24,7 @@ CREATE TABLE Client (
     LastNames VARCHAR(100) NOT NULL,
     Identification INT NOT NULL UNIQUE,
     Address VARCHAR(100) NOT NULL,
-    PhoneNumber VARCHAR(10) NOT NULL,
+    PhoneNumber VARCHAR(10) NOT NULL UNIQUE,
     PRIMARY KEY (ClientID)
 );
 
