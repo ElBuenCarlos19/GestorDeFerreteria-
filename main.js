@@ -62,7 +62,7 @@ function createWindow() {
 
   ipcMain.on("insertonerow", async (event, data) => {
     try {
-       const error =await insertOneRow(data);
+       const error = await insertOneRow(data);
        win.webContents.send("returninsert", error);
       
     } catch (error) {

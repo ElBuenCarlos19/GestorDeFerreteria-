@@ -30,14 +30,54 @@
             <div class="search-box">
                 <label for="search">Cliente</label>
                 <input type="text" id="search" placeholder="Nombre del cliente">
-                <button>Buscar</button>
+                <button id="search-btn" onclick="send()">Buscar</button>
                 <button class="new-invoice">+ Nuevo Cliente</button>
             </div>
         </div>
+    </div>
+    <div class="table-container" id="table-container">
+    </div>
     </main>
-
+    <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="invoice-box">
+            <h2>Nuevo cliente</h2>
+            <form>
+              <div class="form-row">
+                <label for="names">Nombres</label>
+                <input type="text" id="names" />
+              </div>
+              <div class="form-row">
+                <label for="lastNames">Apellidos</label>
+                <input type="text" id="lastNames" />
+              </div>
+              <div class="form-row">
+                <label for="identification">Identificacion</label>
+                <input type="text" id="identification" />
+              </div>
+              <div class="form-row">
+                <label for="address">Dirección</label>
+                <input type="text" id="address" />
+              </div>
+              <div class="form-row">
+                <label for="phoneNumber">Teléfono</label>
+                <input type="text" id="phoneNumber" />
+              </div>
+              <div class="form-row">
+                <label for="email">Correo electronico</label>
+                <input type="text" id="email" />
+              </div>
+              <div class="form-actions">
+                <button type="button" onclick="agregarCliente()">+ Nuevo cliente</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     <footer>
         <p>© 2024 - Luxing</p>
     </footer>
+    <script src="../scripts/scripts_interfaces/cliente.js"></script>
 </body>
 </html>

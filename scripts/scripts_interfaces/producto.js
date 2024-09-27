@@ -33,8 +33,6 @@ function agregarProducto(){
     const nombre = document.getElementById("Nombre").value;
     const descripcion = document.getElementById("Descripcion").value;
     const cantidadInicial = document.getElementById("CantidadInicial").value;
-    const proveedor = document.getElementById("Proveedor").value;
-    console.log(codigo, nombre, descripcion, cantidadInicial, selectedProviderId);
     const dataInsert = {
         table: "product_inventory",
         row: {
