@@ -25,6 +25,7 @@ CREATE TABLE Client (
     Identification INT NOT NULL UNIQUE,
     Address VARCHAR(100) NOT NULL,
     PhoneNumber VARCHAR(10) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
     PRIMARY KEY (ClientID)
 );
 
@@ -55,7 +56,7 @@ CREATE TABLE Product_Inventory (
     ProviderID INT NOT NULL,
     ProductCode VARCHAR(200) NOT NULL UNIQUE,
     ProductName VARCHAR(150) NOT NULL,
-    Description VARCHAR(150) NOT NULL,
+    Description VARCHAR(150),
     Quantity INT NOT NULL,
     PRIMARY KEY (ProductInventoryID),
     FOREIGN KEY (UserID) REFERENCES Users(UserID),
@@ -73,3 +74,15 @@ CREATE TABLE InvoiceDetail (
     FOREIGN KEY (InvoiceID) REFERENCES Invoice(InvoiceID),
     FOREIGN KEY (ProductInventoryID) REFERENCES Product_Inventory(ProductInventoryID)
 );
+
+CREATE TABLE Settings (
+    SettingsID SERIAL,
+    CompanyName VARCHAR(100) NOT NULL,
+    CompanyLogo VARCHAR(255) NOT NULL,
+    PhoneNumber VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    Address VARCHAR(100) NOT NULL,
+    City VARCHAR(100) not null,
+    PostalCode VARCHAR(6) NOT NULL,
+    PRIMARY KEY (SettingsID)
+)
