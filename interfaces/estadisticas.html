@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard de Estadísticas</title>
+    <link rel="stylesheet" href="../styles/principal.css" />
+    <link rel="stylesheet" href="../styles/estadisticas.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Librería Chart.js -->
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Inventario</a></li>
+          <li><a href="./factura.html">Facturas</a></li>
+          <li><a href="./producto.html">Productos</a></li>
+          <li><a href="./clientes.html">Clientes</a></li>
+          <li><a href="#">Usuarios</a></li>
+          <li><a href="./estadisticas.html">Estadisticas</a></li>
+          <li><a href="#">Configuración</a></li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <a href="#">Soporte</a>
+        <a href="#">Salir</a>
+      </div>
+    </header>
+    <main>
+      <h1>Estadísticas</h1>
+      <div class="stats-container">
+        <div class="dashboard">
+          <div>
+            <canvas id="ventasPorMes"></canvas>
+          </div>
+          <div>
+            <canvas id="ventasPorCategoria"></canvas>
+          </div>
+          <div>
+            <canvas id="evolucionInventario"></canvas>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="/GestorDeFerreteria-/scripts/scripts_interfaces/estadisticas.js"></script>
+  </body>
+</html>
