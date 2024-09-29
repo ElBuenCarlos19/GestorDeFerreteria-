@@ -5,83 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Producto</title>
     <link rel="stylesheet" href="../styles/principal.css">
+    <link rel="stylesheet" href="../styles/New.css">
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-
 </head>
-<body></body>
+<body>
     <header>
         <nav>
             <ul>
-                <li><a href="#">Inventario</a></li>
-                <li><a href="./factura.html">Facturas</a></li>
-                <li><a href="./producto.html">Productos</a></li>
-                <li><a href="./clientes.html">Clientes</a></li>
-                <li><a href="#">Usuarios</a></li>
-                <li><a href="./estadisticas.html">Estadisticas</a></li>
-                <li><a href="./configuracion.html">Configuración</a></li>
+                <div class="nav-left">
+                    <li><a href="#">Inventario</a></li>
+                </div>
+                <div class="nav-left">
+                    <li><a href="./factura.html">Facturas</a></li>
+                </div>
+                <div class="nav-left">
+                    <li><a href="./producto.html">Productos</a></li>
+                </div>
+                <div class="nav-left">
+                    <li><a href="./clientes.html">Clientes</a></li>
+                </div>
+                <div class="nav-left">
+                    <li><a href="./usuarios.html">Usuarios</a></li>
+                </div>
+                <div class="nav-left">
+                    <li><a href="./configuracion.html">Configuración</a></li>
+                </div>
             </ul>
         </nav>
         <div class="nav-right">
-            <a href="#">Soporte</a>
-            <a href="#">Salir</a>
-        </div>
-    </header>
-
-    <main>
-        <div class="search-container">
-            <h2>Buscar Productos</h2>
-            <div class="search-box">
-                <label for="search">Codigo o Nombre</label>
-                <input type="text" id="search" placeholder="Codigo del producto o Nombre">
-                <button id="search-btn" onclick="send()">Buscar</button>
-                <button class="new-invoice" onclick="nuevoProducto()">+ Nuevo Producto</button>
+            <div class="nav-left">
+                <a href="#">Soporte</a>
+            </div>
+            <div class="nav-left">
+                <a href="#">Salir</a>
             </div>
         </div>
-        <div class="table-container" id="table-container">
-        </div>
-
-       
+    </header>
+    <main>
+    <div class="container">
+        <header class="header">
+            <h1>Buscar Productos</h1>
+        </header>
+        <form class="search-form">
+            <div class="form-group">
+                <label for="product-search">Código o nombre</label>
+                <input type="text" id="product-search" placeholder="Código o nombre del producto">
+                <button type="submit" class="search-btn">Buscar</button>
+                <button class="new-product-btn">+ Nuevo Producto</button>
+            </div> 
+        </form>
     </main>
-    <div id="modal" class="modal">
+    <div id="newProductModal" class="modal">
         <div class="modal-content">
-          <span class="close">&times;</span>
-          <div class="invoice-box">
-            <h2>Nuevo Producto</h2>
-            <form>
-              <div class="form-row">
-                <label for="Codigo">Codigo</label>
-                <input type="text" id="Codigo" />
-              </div>
-              <div class="form-row">
-                <label for="Nombre">Nombre</label>
-                <input type="text" id="Nombre" />
-              </div>
-              <div class="form-row">
-                <label for="Descripcion">Descripcion</label>
-                <input type="text" id="Descripcion" />
-              </div>
-              <div class="form-row">
-                <label for="CantidadInicial">Cantidad inicial</label>
-                <input type="number" id="CantidadInicial" />
-              </div>
-              <div class="form-row">
-                <label for="fecha">Proveedor</label>
-                <div class="provider-container">
-                    <input type="text" id="Proveedor" placeholder="Buscar...">
-                    <ul id="suggestions-list"></ul>
+            <div class="modal-header">
+                <h2>Agregar nuevo producto</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="newProductForm">
+                <div class="form-group-new">
+                    <label for="code">Código</label>
+                    <input type="text" id="code" name="code" placeholder="Código del producto">
                 </div>
-              </div>
-              <div class="form-actions">
-                <button type="button" onclick="agregarProducto()">+ Nuevo producto</button>
-              </div>
+                <div class="form-group-new">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" placeholder="Nombre del producto">
+                </div>
+                <div class="form-group-new">
+                    <label for="status">Descripción</label>
+                    <input type="text" id="description" name="description" placeholder="Descripción del producto">  
+                </div>
+                <div class="form-group-new">
+                    <label for="provider">Proveedor</label>
+                    <input type="text" id="provider" name="provider" placeholder="Proveedor del producto">
+                </div>
+                <div class="form-group-new">
+                    <label for="price">Cantidad</label>
+                    <input type="text" id="price" name="price" placeholder="Cantidad del producto">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-close">Cerrar</button>
+                    <button type="submit" class="btn-save">Guardar datos</button>
+                </div>
             </form>
-          </div>
         </div>
-      </div>
+    </div>
+    <script src="../scripts/scripts_interfaces/producto.js"></script>
     <footer>
         <p>© 2024 - Luxing</p>
     </footer>
-
-    <script src="../scripts/scripts_interfaces/producto.js"></script>
 </body>
 </html>
