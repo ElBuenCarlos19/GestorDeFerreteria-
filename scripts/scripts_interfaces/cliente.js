@@ -1,4 +1,4 @@
-const { ipcRenderer } = require("electron");
+/* const { ipcRenderer } = require("electron");
 
 modal = document.getElementById("modal");
 const btnNuevaFactura = document.querySelector(".new-invoice");
@@ -71,4 +71,47 @@ ipcRenderer.on("returninsert", (event, error) => {
   } else {
     alert("Error al insertar cliente");
   }
+});
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('newClientModal');
+  const newClientBtn = document.querySelector('.new-client-btn');
+  const closeBtn = document.querySelector('.close');
+  const form = document.getElementById('newClientForm');
+  const closeBtnForm = document.querySelector('.btn-close');
+
+  newClientBtn.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent form submission
+      event.stopPropagation(); // Stop event from bubbling up
+      modal.style.display = 'block';
+  });
+
+  closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+  });
+
+  closeBtnForm.addEventListener('click', function() {
+      modal.style.display = 'none';
+  });
+
+  window.addEventListener('click', function(event) {
+      if (event.target == modal) {
+          modal.style.display = 'none';
+      }
+  });
+
+  form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const newClient = Object.fromEntries(formData.entries());
+      console.log('New client:', newClient);
+      // Here you would typically send the data to your backend
+      modal.style.display = 'none';
+      form.reset();
+  });
+
+  // Prevent clicks inside the modal from closing it
+  modal.addEventListener('click', function(event) {
+      event.stopPropagation();
+  });
 });

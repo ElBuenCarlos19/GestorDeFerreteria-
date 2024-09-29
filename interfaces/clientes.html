@@ -3,82 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Inventario</title>
+    <title>Producto</title>
     <link rel="stylesheet" href="../styles/principal.css">
+    <link rel="stylesheet" href="../styles/New.css">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 </head>
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="#">Inventario</a></li>
-                <li><a href="./factura.html">Facturas</a></li>
-                <li><a href="./producto.html">Productos</a></li>
-                <li><a href="./clientes.html">Clientes</a></li>
-                <li><a href="#">Usuarios</a></li>
-                <li><a href="./estadisticas.html">Estadisticas</a></li>
-                <li><a href="./configuracion.html">Configuración</a></li>
+                <div class="nav-left">
+                    <li><a href="#">Inventario</a></li>
+                </div>
+                <div class="nav-left">
+                    <li><a href="./factura.html">Facturas</a></li>
+                </div>
+                <div class="nav-left">
+                    <li><a href="./producto.html">Productos</a></li>
+                </div>
+                <div class="nav-left">
+                    <li><a href="./clientes.html">Clientes</a></li>
+                </div>
+                <div class="nav-left">
+                    <li><a href="./usuarios.html">Usuarios</a></li>
+                </div>
+                <div class="nav-left">
+                    <li><a href="./configuracion.html">Configuración</a></li>
+                </div>
             </ul>
         </nav>
         <div class="nav-right">
-            <a href="#">Soporte</a>
-            <a href="#">Salir</a>
-        </div>
-    </header>
-
-    <main>
-        <div class="search-container">
-            <h2>Buscar Clientes</h2>
-            <div class="search-box">
-                <label for="search">Cliente</label>
-                <input type="text" id="search" placeholder="Nombre del cliente">
-                <button id="search-btn" onclick="send()">Buscar</button>
-                <button class="new-invoice">+ Nuevo Cliente</button>
+            <div class="nav-left">
+                <a href="#">Soporte</a>
+            </div>
+            <div class="nav-left">
+                <a href="#">Salir</a>
             </div>
         </div>
-    </div>
-    <div class="table-container" id="table-container">
-    </div>
+    </header>
+    <main>
+    <div class="container">
+        <header class="header">
+            <h1>Buscar Clientes</h1>
+        </header>
+        <form class="search-form">
+            <div class="form-group">
+                <label for="product-search">Cliente</label>
+                <input type="text" id="product-search" placeholder="Código o nombre del producto">
+                <button type="submit" class="search-btn">Buscar</button>
+                <button class="new-client-btn">+ Nuevo Cliente</button>
+            </div> 
+        </form>
     </main>
-    <div id="modal" class="modal">
+    <div id="newClientModal" class="modal">
         <div class="modal-content">
-          <span class="close">&times;</span>
-          <div class="invoice-box">
-            <h2>Nuevo cliente</h2>
-            <form>
-              <div class="form-row">
-                <label for="names">Nombres</label>
-                <input type="text" id="names" />
-              </div>
-              <div class="form-row">
-                <label for="lastNames">Apellidos</label>
-                <input type="text" id="lastNames" />
-              </div>
-              <div class="form-row">
-                <label for="identification">Identificacion</label>
-                <input type="text" id="identification" />
-              </div>
-              <div class="form-row">
-                <label for="address">Dirección</label>
-                <input type="text" id="address" />
-              </div>
-              <div class="form-row">
-                <label for="phoneNumber">Teléfono</label>
-                <input type="text" id="phoneNumber" />
-              </div>
-              <div class="form-row">
-                <label for="email">Correo electronico</label>
-                <input type="text" id="email" />
-              </div>
-              <div class="form-actions">
-                <button type="button" onclick="agregarCliente()">+ Nuevo cliente</button>
-              </div>
+            <div class="modal-header">
+                <h2>Agregar nuevo cliente</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="newClientForm">
+                <div class="form-group-new">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" placeholder="Nombre del cliente">
+                </div>
+                <div class="form-group-new">
+                    <label for="lastname">Apellido</label>
+                    <input type="text" id="lastname" name="lastname" placeholder="Apellido del cliente">
+                </div>
+                <div class="form-group-new">
+                    <label for="identification">Identificación</label>
+                    <input type="text" id="identification" name="identification" placeholder="Identificación del cliente">  
+                </div>
+                <div class="form-group-new">
+                    <label for="adress">Dirección</label>
+                    <input type="text" id="adress" name="adress" placeholder="Dirección del cliente">
+                </div>
+                <div class="form-group-new">
+                    <label for="phonenumber">Numero de teléfono</label>
+                    <input type="text" id="phonenumber" name="phonenumber" placeholder="teléfono del cliente">
+                </div>
+                <div class="form-group-new">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" placeholder="Correo electrónico del cliente">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-close">Cerrar</button>
+                    <button type="submit" class="btn-save">Guardar datos</button>
+                </div>
             </form>
-          </div>
         </div>
-      </div>
+    </div>
+    <script src="../scripts/scripts_interfaces/cliente.js"></script>
     <footer>
         <p>© 2024 - Luxing</p>
     </footer>
-    <script src="../scripts/scripts_interfaces/cliente.js"></script>
 </body>
 </html>
