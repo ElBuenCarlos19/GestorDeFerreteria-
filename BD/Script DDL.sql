@@ -84,5 +84,15 @@ CREATE TABLE Settings (
     Address VARCHAR(100) NOT NULL,
     City VARCHAR(100) not null,
     PostalCode VARCHAR(6) NOT NULL,
+    DateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (SettingsID)
 )
+
+CREATE TABLE Statistics (
+    StatID SERIAL,
+    StatValue VARCHAR(100) NOT NULL,
+    StatType VARCHAR(100) NOT NULL,
+    DateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (StatID)
+)
+--Por terminar
