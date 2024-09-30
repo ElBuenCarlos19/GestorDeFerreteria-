@@ -7,7 +7,7 @@ const { searchProduct, searchallrows, insertOneRow } = require("./scripts/search
 // Proceso de renderizado(Cliente) y proceso principal(node)
 function createWindow() {
   const win = new BrowserWindow({
-    width: 800,
+    width: 850,
     height: 600,
     resizable: false,
     skipTaskbar: true,
