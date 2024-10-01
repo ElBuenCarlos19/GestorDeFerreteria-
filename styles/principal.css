@@ -226,3 +226,25 @@ footer {
     color: white;
     border: none;
   }
+
+  #suggestions-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    max-height: 100px;
+    overflow-y: auto;
+    display: none;
+  }
+  #suggestions-list li {
+    padding: 10px;
+    cursor: pointer;
+  }
+  #suggestions-list li:hover {
+    background-color: #f0f0f0;
+  }
