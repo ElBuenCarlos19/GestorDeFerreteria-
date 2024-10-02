@@ -25,7 +25,7 @@ CREATE TABLE Client (
     Identification INT NOT NULL UNIQUE,
     Address VARCHAR(100) NOT NULL,
     PhoneNumber VARCHAR(10) NOT NULL UNIQUE,
-    email VARCHAR(100) NOT NULL UNIQUE,
+    Email VARCHAR(100) NOT NULL UNIQUE,
     PRIMARY KEY (ClientID)
 );
 
@@ -58,6 +58,7 @@ CREATE TABLE Product_Inventory (
     ProductName VARCHAR(150) NOT NULL,
     Description VARCHAR(150),
     Quantity INT NOT NULL,
+    Price DECIMAL(10, 2) NOT NULL,
     PRIMARY KEY (ProductInventoryID),
     FOREIGN KEY (UserID) REFERENCES Users(UserID),
     FOREIGN KEY (ProviderID) REFERENCES Provider(ProviderID)
