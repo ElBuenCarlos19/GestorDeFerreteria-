@@ -2,6 +2,17 @@ const { ipcRenderer } = require("electron");
 
 var opcionesJSON = [];
 var selectedProviderId;
+const tablesFill = {
+  table: "product_inventory",
+  row: {
+    provider: "provider(providername)",
+    productcode: "productcode",
+    productname: "productname",
+    description: "description",
+    quantity: "quantity",
+    price: "price",
+  },
+};
 
 function send() {
   const search = document.getElementById("product-search").value;
@@ -27,7 +38,7 @@ ipcRenderer.on("returninsert", (event, error) => {
 });
 
 ipcRenderer.on("returndata", (event, data) => {
-  const miDiv = document.getElementById("table-container");
+  const miDiv = document.getElementById("table-content");
 
   while (miDiv.firstChild) {
     miDiv.removeChild(miDiv.firstChild);
@@ -40,12 +51,13 @@ ipcRenderer.on("returndata", (event, data) => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+
+  fillTable(tablesFill);
   const modal = document.getElementById("newProductModal");
   const newProductBtn = document.querySelector(".new-product-btn");
   const closeBtn = document.querySelector(".close");
   const form = document.getElementById("newProductForm");
   const closeBtnForm = document.querySelector(".btn-close");
-
   newProductBtn.addEventListener("click", function (event) {
     event.preventDefault(); // Prevent form submission
     event.stopPropagation(); // Stop event from bubbling up
@@ -77,12 +89,18 @@ document.addEventListener("DOMContentLoaded", function () {
         providerid: selectedProviderId,
         productcode: newProduct.code,
         productname: newProduct.name,
-        description: newProduct.description,  
+        description: newProduct.description,
         quantity: newProduct.quantity,
+        price: newProduct.price,
       },
     };
     form.reset();
     ipcRenderer.send("insertonerow", dataInsert);
+    ipcRenderer.on("returninsert", (event, error) => {
+      if (!error) {
+        fillTable(tablesFill);
+      }
+    });
   });
 
   // Prevent clicks inside the modal from closing it
@@ -131,3 +149,48 @@ document.addEventListener("click", function (event) {
     suggestionsList.style.display = "none";
   }
 });
+
+async function fillTable(tablesFill) {
+  ipcRenderer.send("sendFillTable", tablesFill);
+  ipcRenderer.on("returnfilltable", (event, data) => {
+    fill(data);
+  });
+}
+
+function fill(data) {
+  const tbody = document.getElementById("table-content");
+  if (data.length === 0) {
+      return;
+    }
+
+    while (tbody.firstChild) {
+      tbody.removeChild(tbody.firstChild);
+    }
+    
+    data.forEach((item) => {
+      const row = document.createElement("tr");
+      Object.values(item).forEach((value) => {
+        const td = document.createElement("td");
+        if (typeof value === "object" && value !== null) {
+          td.textContent = Object.values(value).join(", ");
+        } else {
+          td.textContent = value;
+        }
+        row.appendChild(td);
+        
+      });
+      const actionCell = document.createElement("td");
+        const updateBtn = document.createElement("button");
+        updateBtn.textContent = "Actualizar";
+        updateBtn.className = "action-btn update-btn";
+        updateBtn.setAttribute("aria-label", "Actualizar item");
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Eliminar";
+        deleteBtn.className = "action-btn delete-btn";
+        deleteBtn.setAttribute("aria-label", "Eliminar item");
+        actionCell.appendChild(updateBtn);
+        actionCell.appendChild(deleteBtn);
+        row.appendChild(actionCell);
+      tbody.appendChild(row);
+    });
+}

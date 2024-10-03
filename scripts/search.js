@@ -34,8 +34,21 @@ async function insertOneRow(dataInsert) {
   return error;
 }
 
+async function FillTables(table) {
+    console.log(table.row.provider, "si lleg");
+    const { data, error } = await supabase
+            .from(table.table)
+            .select(`${table.row.productcode}, ${table.row.productname}, ${table.row.description}, ${table.row.provider} ,${table.row.quantity}, ${table.row.price}`)
+    if (error) {
+        console.log("Error al buscar producto:", error.message);
+    }
+    console.log(data, "eche");
+    return data;
+}
+
 module.exports = {
     searchProduct,
     searchallrows,
-    insertOneRow
+    insertOneRow,
+    FillTables
 }
