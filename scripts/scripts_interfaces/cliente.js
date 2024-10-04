@@ -1,5 +1,18 @@
 const { ipcRenderer } = require("electron");
 
+const tablesFill = {
+  table: "client",
+  row: {
+    names: "names",
+    lastname: "lastnames",
+    identification: "identification",
+    address: "address",
+    phonenumber: "phonenumber",
+    email: "email",
+  },
+};
+
+
 function send() {
   const search = document.getElementById("product-search").value;
   const dataSearch = ["client", "names"]; // 0 es nombre de la tabla, 1 es la columna a buscar
@@ -20,6 +33,7 @@ ipcRenderer.on("returndata", (event, data) => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  fillTable(tablesFill)
   const modal = document.getElementById("newClientModal");
   const newClientBtn = document.querySelector(".new-client-btn");
   const closeBtn = document.querySelector(".close");
@@ -63,6 +77,11 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     };
     ipcRenderer.send("insertonerow", dataInsert);
+    ipcRenderer.on("returninsert", (event, error) => {
+      if (!error) {
+        fillTable(tablesFill);
+      }
+    });
     form.reset();
   });
 
@@ -81,3 +100,48 @@ ipcRenderer.on("returninsert", (event, error) => {
     console.log(error);
   }
 });
+
+async function fillTable(tablesFill) {
+  ipcRenderer.send("sendFillTable", tablesFill);
+  ipcRenderer.on("returnfilltable", (event, data) => {
+    fill(data);
+  });
+}
+
+function fill(data) {
+  const tbody = document.getElementById("table-content");
+  if (data.length === 0) {
+      return;
+    }
+
+    while (tbody.firstChild) {
+      tbody.removeChild(tbody.firstChild);
+    }
+    
+    data.forEach((item) => {
+      const row = document.createElement("tr");
+      Object.values(item).forEach((value) => {
+        const td = document.createElement("td");
+        if (typeof value === "object" && value !== null) {
+          td.textContent = Object.values(value).join(", ");
+        } else {
+          td.textContent = value;
+        }
+        row.appendChild(td);
+        
+      });
+      const actionCell = document.createElement("td");
+        const updateBtn = document.createElement("button");
+        updateBtn.textContent = "Actualizar";
+        updateBtn.className = "action-btn update-btn";
+        updateBtn.setAttribute("aria-label", "Actualizar item");
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Eliminar";
+        deleteBtn.className = "action-btn delete-btn";
+        deleteBtn.setAttribute("aria-label", "Eliminar item");
+        actionCell.appendChild(updateBtn);
+        actionCell.appendChild(deleteBtn);
+        row.appendChild(actionCell);
+      tbody.appendChild(row);
+    });
+}

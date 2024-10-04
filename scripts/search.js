@@ -35,10 +35,10 @@ async function insertOneRow(dataInsert) {
 }
 
 async function FillTables(table) {
-    console.log(table.row.provider, "si lleg");
+
     const { data, error } = await supabase
             .from(table.table)
-            .select(`${table.row.productcode}, ${table.row.productname}, ${table.row.description}, ${table.row.provider} ,${table.row.quantity}, ${table.row.price}`)
+            .select(generateRowString(table))
     if (error) {
         console.log("Error al buscar producto:", error.message);
     }
@@ -46,6 +46,12 @@ async function FillTables(table) {
     return data;
 }
 
+
+function generateRowString(tableObject) {
+    const { row } = tableObject;
+    const rowValues = Object.values(row);
+    return rowValues.join(', ');
+  }
 module.exports = {
     searchProduct,
     searchallrows,
