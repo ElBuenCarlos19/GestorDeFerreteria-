@@ -1,29 +1,28 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById("newUserModal");
-    const newUserBtn = document.querySelector(".new-user-btn");
-    const closeBtn = document.querySelector(".close");
-    const form = document.getElementById("newUsertForm");
-    const closeBtnForm = document.querySelector(".btn-close");
-  
-    newUserBtn.addEventListener("click", function (event) {
-      event.preventDefault(); // Prevent form submission
-      event.stopPropagation(); // Stop event from bubbling up
-      modal.style.display = "block";
-    });
-  
-    closeBtn.addEventListener("click", function () {
+  const modal = document.getElementById("newUsertModal");
+  const newUserBtn = document.querySelector(".new-user-btn");
+  const closeBtn = document.querySelector(".close");
+  const form = document.getElementById("newUserForm");
+  const closeBtnForm = document.querySelector(".btn-close");
+  newUserBtn.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent form submission
+    event.stopPropagation(); // Stop event from bubbling up
+    modal.style.display = "block";
+  });
+
+  closeBtn.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+
+  closeBtnForm.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+
+  window.addEventListener("click", function (event) {
+    if (event.target == modal) {
       modal.style.display = "none";
-    });
-  
-    closeBtnForm.addEventListener("click", function () {
-      modal.style.display = "none";
-    });
-  
-    window.addEventListener("click", function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    });
+    }
+  });
   
     form.addEventListener("submit", function (e) {
       e.preventDefault();

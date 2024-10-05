@@ -51,3 +51,39 @@ document.addEventListener("click", function (event) {
     suggestionsList.style.display = "none";
   }
 });
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById("newProductModal");
+  const newProductBtn = document.querySelector(".new-product-btn");
+  const closeBtn = document.querySelector(".close");
+  const form = document.getElementById("newProductForm");
+  const closeBtnForm = document.querySelector(".btn-close");
+  newProductBtn.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent form submission
+    event.stopPropagation(); // Stop event from bubbling up
+    modal.style.display = "block";
+  });
+
+  closeBtn.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+
+  closeBtnForm.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+
+  window.addEventListener("click", function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  });
+
+  form.onsubmit = function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const newProduct = Object.fromEntries(formData.entries());
+      console.log('New product:', newProduct);
+      // Here you would typically send the data to your backend
+      modal.style.display = 'none';
+      form.reset();
+  }
+});
