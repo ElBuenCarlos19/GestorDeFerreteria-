@@ -37,11 +37,10 @@ tr:hover {
     cursor: pointer;
     font-weight: bold;
 }
-/* .edit {
-    background-color: #FFA500;
-    color: white;
+
+.update-btn {
+    width: 50px;
+    background-color: greenyellow;
+    color: var(--accent-color);
+    border: none;
 }
-.delete {
-    background-color: #FF0000;
-    color: white;
-} */
