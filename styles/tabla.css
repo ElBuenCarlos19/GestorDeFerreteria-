@@ -29,18 +29,20 @@ tr:nth-child(even) {
 tr:hover {
     background-color: #ddd;
 }
-.action-btn {
+
+action-btn {
+    display: flex;
     padding: 6px 12px;
     margin: 0 4px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-weight: bold;
 }
 
-.update-btn {
-    width: 50px;
-    background-color: greenyellow;
-    color: var(--accent-color);
-    border: none;
+.action-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+
