@@ -1,28 +1,97 @@
-main h1{
+:root {
+    --main-color: #fbe74e;
+    --accent-color: #000000;
+    --secondary-color: #ffff9e;
+  }
+  
+  .config-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .config-header {
+    background-color: var(--secondary-color);
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .config-icon {
+    margin-right: 5px;
+  }
+  
+  .config-content {
+    display: flex;
     padding: 20px;
-    margin: 20px;
-}
-.form-container{
-    background-color: #fec10b8e;
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 60%;
-    margin: 0 auto;
-}
-
-.form-container form{
-    margin: 50px;
-}
-
-.form-container form div{
-    padding: 10px;
-}
-
-.btn-enviar input{
-    padding: 8px 15px;
+  }
+  
+  .logo-section {
+    flex: 0 0 200px;
+    margin-right: 20px;
+  }
+  
+  .google-logo {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .logo-button {
+    width: 100%;
+    padding: 5px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .config-form {
+    flex: 1;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    width: 150px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 14px;
+  }
+  
+  .button-container {
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #ddd;
+  }
+  
+  .update-button {
     background-color: var(--main-color);
-    color: white;
+    color: var(--accent-color);
     border: none;
+    padding: 8px 12px;
     border-radius: 4px;
     cursor: pointer;
-}
+    font-size: 14px;
+    margin-left: 10px;
+  }
+  
+  .update-button:hover {
+    background-color: var(--secondary-color);
+  }
