@@ -46,22 +46,16 @@
     </div>
     <div class="form-grid">
         <div class="form-group-invoice">
-            <label for="cliente">Cliente</label>
-            <input id="cliente" type="text" placeholder="Seleccionar un cliente">
+            <label for="code">Codigo</label>
+            <input id="code" type="text" placeholder="Codigo de la factura">
         </div>
         <div class="form-group-invoice">
-            <label for="telefono">Vendedor</label>
-            <input id="telefono" type="text" placeholder="Vendedor">
-        </div>
-        <div class="form-group-invoice">
-            <label for="email">Email</label>
-            <input id="email" type="email" placeholder="Email">
+            <label for="client">Cliente</label>
+            
         </div>
         <div class="form-group-invoice">
             <label for="vendedor">Vendedor</label>
-            <select id="vendedor">
-                <option></option>
-            </select>
+            <input id="vendedor" type="text" placeholder="Nombre del vendedor">
         </div>
         <div class="form-group-invoice">
             <label for="pago">Pago</label>
@@ -71,10 +65,32 @@
         </div>
     </div>
     <div class="button-group">
-        <button>+ Nuevo producto</button>
-        <button>Nuevo cliente</button>
+        <button><a href="producto.html">+ Nuevo producto</a></button>
+        <button><a href="clientes.html">Nuevo cliente</a></button>
         <button>Agregar productos</button>
     </div>
+    </div>
+    <div id="newProductModal" class="modal"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Agregar nuevo producto</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="newProductForm">
+                <div class="form-group-new">
+                    <label for="product">Producto</label>
+                    <input type="text" id="product" name="product" placeholder="Nombre del producto">
+                </div>
+                <div class="form-group-new">
+                    <label for="quantity">Cantidad</label>
+                    <input type="text" id="quantity" name="quantity" placeholder="Cantidad del producto">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-close">Cerrar</button>
+                    <button type="submit" class="btn-save">Guardar producto</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fillTable(tablesFill)
     const modal = document.getElementById("newUserModal");
     const newUserBtn = document.querySelector(".new-user-btn");
     const closeBtn = document.querySelector(".close");
