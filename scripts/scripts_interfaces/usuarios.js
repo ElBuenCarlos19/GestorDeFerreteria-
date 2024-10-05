@@ -1,4 +1,19 @@
+const { ipcRenderer } = require("electron");
+
+const tablesFill = {
+  table: "users",
+  row: {
+    names: "names",
+  lastnames: "lastnames",
+    identification: "identification",
+    email: "email",
+    username: "username",
+    rolename: "role(namerole)"
+  },
+};
+
 document.addEventListener("DOMContentLoaded", function () {
+  fillTable(tablesFill);
   const modal = document.getElementById("newUsertModal");
   const newUserBtn = document.querySelector(".new-user-btn");
   const closeBtn = document.querySelector(".close");
@@ -54,3 +69,50 @@ document.addEventListener("DOMContentLoaded", function () {
       event.stopPropagation();
     });
   });
+
+  async function fillTable(tablesFill) {
+    ipcRenderer.send("sendFillTable", tablesFill);
+    ipcRenderer.on("returnfilltable", (event, data) => {
+      fill(data);
+    });
+  }
+  
+  function fill(data) {
+    console.log(data, "alaaa");
+    const tbody = document.getElementById("table-content");
+    if (data.length === 0) {
+        return;
+      }
+  
+      while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
+      }
+      
+      data.forEach((item) => {
+        const row = document.createElement("tr");
+        Object.values(item).forEach((value) => {
+          const td = document.createElement("td");
+          if (typeof value === "object" && value !== null) {
+            td.textContent = Object.values(value).join(", ");
+          } else {
+            td.textContent = value;
+          }
+          row.appendChild(td);
+          
+        });
+        const actionCell = document.createElement("td");
+        actionCell.className = "action-cell";
+          const updateBtn = document.createElement("button");
+          updateBtn.textContent = "​​​🔄​​";
+          updateBtn.className = "action-btn update-btn";
+          updateBtn.setAttribute("aria-label", "Actualizar item");
+          const deleteBtn = document.createElement("button");
+          deleteBtn.textContent = "​❌​";
+          deleteBtn.className = "action-btn delete-btn";
+          deleteBtn.setAttribute("aria-label", "Eliminar item");
+          actionCell.appendChild(updateBtn);
+          actionCell.appendChild(deleteBtn);
+          row.appendChild(actionCell);
+        tbody.appendChild(row);
+      });
+  }
