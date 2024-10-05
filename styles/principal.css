@@ -33,6 +33,11 @@ nav ul li a {
   font-weight: bold;
 }
 
+a { 
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
 .nav-left {
   background-color: var(--main-color);
   padding: 1em;
