@@ -191,46 +191,6 @@ footer {
     }
   }
   
-  
-  .table-container {
-    margin-top: 20px;
-    overflow-x: auto;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
-  .action-btn {
-    padding: 5px 10px;
-    margin-right: 5px;
-    cursor: pointer;
-  }
-  
-  .edit {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-  }
-  
-  .delete {
-    background-color: #f44336;
-    color: white;
-    border: none;
-  }
-
   #suggestions-list {
     list-style-type: none;
     padding: 0;
