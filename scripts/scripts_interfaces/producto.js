@@ -16,7 +16,7 @@ const tablesFill = {
 
 function send() {
   const search = document.getElementById("product-search").value;
-  const dataSearch = ["product_inventory", "productname"]; // 0 es nombre de la tabla, 1 es la columna a buscar
+  const dataSearch = ["product_inventory", "productname", "productcode", "description", "quantity", "price", "provider(providername)"]; // 0 es nombre de la tabla, 1 es la columna a buscar 2... Son columnas a select
   ipcRenderer.send("sendsearch", { search, dataSearch });
 }
 
@@ -38,20 +38,10 @@ ipcRenderer.on("returninsert", (event, error) => {
 });
 
 ipcRenderer.on("returndata", (event, data) => {
-  const miDiv = document.getElementById("table-content");
-
-  while (miDiv.firstChild) {
-    miDiv.removeChild(miDiv.firstChild);
-  }
-  for (let i = 0; i < data.length; i++) {
-    const p = document.createElement("p");
-    p.textContent = data[i].productname;
-    miDiv.appendChild(p);
-  }
+  fill(data);
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-
   fillTable(tablesFill);
   const modal = document.getElementById("newProductModal");
   const newProductBtn = document.querySelector(".new-product-btn");
@@ -158,6 +148,7 @@ async function fillTable(tablesFill) {
 }
 
 function fill(data) {
+  console.log(data, "alaaa");
   const tbody = document.getElementById("table-content");
   if (data.length === 0) {
       return;
