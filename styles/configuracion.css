@@ -1,4 +1,8 @@
-
+:root {
+    --main-color: #fbe74e;
+    --accent-color: #000000;
+    --secondary-color: #ffff9e;
+  }
   
   .config-container {
     max-width: 800px;
@@ -10,7 +14,7 @@
   }
   
   .config-header {
-    background-color: #e6f3ff;
+    background-color: var(--secondary-color);
     padding: 10px 15px;
     font-size: 16px;
     font-weight: bold;
@@ -59,6 +63,7 @@
     display: block;
     margin-bottom: 5px;
     font-size: 14px;
+    width: 150px;
   }
   
   .form-group input,
@@ -77,15 +82,16 @@
   }
   
   .update-button {
-    padding: 8px 15px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--main-color);
+    color: var(--accent-color);
     border: none;
-    border-radius: 3px;
+    padding: 8px 12px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
+    margin-left: 10px;
   }
   
   .update-button:hover {
-    background-color: #45a049;
+    background-color: var(--secondary-color);
   }
