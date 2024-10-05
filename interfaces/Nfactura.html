@@ -4,52 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nueva Factura</title>
-    <link rel="stylesheet" href="../styles/Nfactura.css">
+    <link rel="stylesheet" href="../styles/principal.css">
+    <link rel="stylesheet" href="../styles/New.css">
 </head>
 <body>
-    <div class="container">
-        <div class="invoice-box">
-            <h2>Nueva Factura</h2>
-            <form>
-                <div class="form-row">
-                    <label for="cliente">Cliente:</label>
-                    <select id="cliente">
-                        <option value="">Selecciona un cliente</option>
-                        <option value="cliente1">Cliente 1</option>
-                        <option value="cliente2">Cliente 2</option>
-                    </select>
+    <header>
+        <nav>
+            <ul>
+                <div class="nav-left">
+                    <li><a href="#">Inventario</a></li>
                 </div>
-                <div class="form-row">
-                    <label for="vendedor">Vendedor:</label>
-                    <input type="text" id="vendedor" value="Fer Ware">
+                <div class="nav-left">
+                    <li><a href="./factura.html">Facturas</a></li>
                 </div>
-                <div class="form-row">
-                    <label for="telefono">Teléfono:</label>
-                    <input type="text" id="telefono" placeholder="Teléfono">
+                <div class="nav-left">
+                    <li><a href="./producto.html">Productos</a></li>
                 </div>
-                <div class="form-row">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" placeholder="Email">
+                <div class="nav-left">
+                    <li><a href="./clientes.html">Clientes</a></li>
                 </div>
-                <div class="form-row">
-                    <label for="fecha">Fecha:</label>
-                    <input type="date" id="fecha" value="2022-06-07">
+                <div class="nav-left">
+                    <li><a href="./usuarios.html">Usuarios</a></li>
                 </div>
-                <div class="form-row">
-                    <label for="pago">Pago:</label>
-                    <select id="pago">
-                        <option value="efectivo">Efectivo</option>
-                        <option value="tarjeta">Tarjeta</option>
-                    </select>
+                <div class="nav-left">
+                    <li><a href="./configuracion.html">Configuración</a></li>
                 </div>
-                <div class="form-actions">
-                    <button type="button">+ Nuevo producto</button>
-                    <button type="button">+ Nuevo cliente</button>
-                    <button type="button">Agregar productos</button>
-                    <button type="button">Imprimir</button>
-                </div>
-            </form>
+            </ul>
+        </nav>
+        <div class="nav-right">
+            <div class="nav-left">
+                <a href="#">Soporte</a>
+            </div>
+            <div class="nav-left" id="salir">
+                <a href="#">Salir</a>
+            </div>
         </div>
+    </header>
+    <div class="container">
+    <div class="header">
+        <h1>Nueva Factura</h1>
+    </div>
+    <div class="form-grid">
+        <div class="form-group-invoice">
+            <label for="cliente">Cliente</label>
+            <input id="cliente" type="text" placeholder="Seleccionar un cliente">
+        </div>
+        <div class="form-group-invoice">
+            <label for="telefono">Vendedor</label>
+            <input id="telefono" type="text" placeholder="Vendedor">
+        </div>
+        <div class="form-group-invoice">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="Email">
+        </div>
+        <div class="form-group-invoice">
+            <label for="vendedor">Vendedor</label>
+            <select id="vendedor">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group-invoice">
+            <label for="fecha">Fecha</label>
+            <input id="fecha" type="date">
+        </div>
+        <div class="form-group-invoice">
+            <label for="pago">Pago</label>
+            <select id="pago">
+                <option>Efectivo</option>
+            </select>
+        </div>
+    </div>
+    <div class="button-group">
+        <button>+ Nuevo producto</button>
+        <button>Nuevo cliente</button>
+        <button>Agregar productos</button>
+    </div>
     </div>
 </body>
 </html>
