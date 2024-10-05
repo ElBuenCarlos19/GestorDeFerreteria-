@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
+
 const searchInput = document.getElementById("cliente");
 const suggestionsList = document.getElementById("suggestions-list");
 
