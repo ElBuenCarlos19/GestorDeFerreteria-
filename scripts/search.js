@@ -43,15 +43,27 @@ async function FillTables(table) {
     return data;
 }
 
-
 function generateRowString(tableObject) {
     const { row } = tableObject;
     const rowValues = Object.values(row);
     return rowValues.join(', ');
   }
+
+async function searchrowwhere(tableObject){
+    const { data, error } = await supabase
+            .from(tableObject.table)
+            .select(tableObject.row)
+            .eq(tableObject.column, tableObject.value)
+    if (error) {
+        console.log("Error al buscar producto:", error.message);
+    }
+    
+    return data;
+}
 module.exports = {
     searchProduct,
     searchallrows,
     insertOneRow,
-    FillTables
+    FillTables,
+    searchrowwhere
 }

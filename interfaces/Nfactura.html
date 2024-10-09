@@ -1,99 +1,227 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nueva Factura</title>
-    <link rel="stylesheet" href="../styles/principal.css">
-    <link rel="stylesheet" href="../styles/New.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../styles/principal.css" />
+    <link rel="stylesheet" href="../styles/New.css" />
+  </head>
+  <body>
     <header>
-        <nav>
-            <ul>
-                <div class="nav-left">
-                    <li><a href="#">Inventario</a></li>
-                </div>
-                <div class="nav-left">
-                    <li><a href="./factura.html">Facturas</a></li>
-                </div>
-                <div class="nav-left">
-                    <li><a href="./producto.html">Productos</a></li>
-                </div>
-                <div class="nav-left">
-                    <li><a href="./clientes.html">Clientes</a></li>
-                </div>
-                <div class="nav-left">
-                    <li><a href="./usuarios.html">Usuarios</a></li>
-                </div>
-                <div class="nav-left">
-                    <li><a href="./configuracion.html">Configuración</a></li>
-                </div>
-            </ul>
-        </nav>
-        <div class="nav-right">
-            <div class="nav-left">
-                <a href="#">Soporte</a>
-            </div>
-            <div class="nav-left" id="salir">
-                <a href="#">Salir</a>
-            </div>
+      <nav>
+        <ul>
+          <div class="nav-left">
+            <li><a href="#">Inventario</a></li>
+          </div>
+          <div class="nav-left">
+            <li><a href="./factura.html">Facturas</a></li>
+          </div>
+          <div class="nav-left">
+            <li><a href="./producto.html">Productos</a></li>
+          </div>
+          <div class="nav-left">
+            <li><a href="./clientes.html">Clientes</a></li>
+          </div>
+          <div class="nav-left">
+            <li><a href="./usuarios.html">Usuarios</a></li>
+          </div>
+          <div class="nav-left">
+            <li><a href="./configuracion.html">Configuración</a></li>
+          </div>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <div class="nav-left">
+          <a href="#">Soporte</a>
         </div>
+        <div class="nav-left" id="salir">
+          <a href="#">Salir</a>
+        </div>
+      </div>
     </header>
     <div class="container">
-    <div class="header">
+      <div class="header">
         <h1>Nueva Factura</h1>
-    </div>
-    <div class="form-grid">
+      </div>
+      <div class="form-grid">
         <div class="form-group-invoice">
-            <label for="code">Codigo</label>
-            <input id="code" type="text" placeholder="Codigo de la factura">
+          <label for="code">Codigo</label>
+          <input id="code" type="text" placeholder="Codigo de la factura" />
         </div>
         <div class="form-group-invoice">
-            <label for="cliente">Cliente</label>
-            <div class="provider-container">
-                <input type="text" id="cliente" placeholder="Buscar...">
-                <ul id="suggestions-list"></ul>
-            </div>
+          <label for="cliente">Cliente</label>
+          <div class="provider-container">
+            <input type="text" id="cliente" placeholder="Buscar..." />
+            <ul id="suggestions-list"></ul>
+          </div>
         </div>
         <div class="form-group-invoice">
-            <label for="pago">Pago</label>
-            <select id="pago">
-                <option>Efectivo</option>
-            </select>
+          <label for="pago">Pago</label>
+          <select id="pago">
+            <option value="Efectivo">Efectivo</option>
+            <option value="Transferencia">Transferencia</option>
+            <option value="Cheque">Cheque</option>
+            <option value="Tarjeta">Tarjeta</option>
+            <option value="Credinalga">Credinalga</option>
+          </select>
         </div>
-    </div>
-    <div class="button-group">
-        <button><a href="producto.html">+ Nuevo producto</a></button>
+      </div>
+      <div class="button-group">
+        <button id="facturacion" onclick="generarfactura()">
+          Generar Factura
+        </button>
+        <button><a href="producto.html">Nuevo producto</a></button>
         <button><a href="clientes.html">Nuevo cliente</a></button>
-        <button class="new-product-btn" id="product" onclick="cargarProductos()">Agregar productos</button>
+        <button
+          class="new-product-btn"
+          id="product"
+          onclick="cargarProductos()"
+        >
+          Agregar productos
+        </button>
+      </div>
     </div>
+    <div class="table-container conti">
+      <table id="tablaProductos">
+        <thead>
+          <tr class="tablitaproduc">
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody id="table-content"></tbody>
+      </table>
+      <div id="total">Total: $0,00</div>
     </div>
     <div id="newProductModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Agregar nuevo producto</h2>
-                <span class="close">&times;</span>
-            </div>
-            <form id="newProductForm">
-                <div class="form-group-new">
-                    <label for="product">Producto</label>
-                    <input type="text" id="product" name="product" placeholder="Nombre del producto">
-                </div>
-                <div class="form-group-new">
-                    <label for="quantity">Cantidad</label>
-                    <input type="text" id="quantity" name="quantity" placeholder="Cantidad del producto">
-                </div>
-                <div class="form-actions">
-                    <button type="button" class="btn-close">Cerrar</button>
-                    <button type="submit" class="btn-save">Guardar producto</button>
-                </div>
-            </form>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Agregar nuevo producto</h2>
+          <span class="close">&times;</span>
         </div>
+        <form id="newProductForm">
+          <div class="form-group-new">
+            <label for="product">Producto</label>
+            <div class="product">
+              <input
+                type="text"
+                id="productoi"
+                name="product"
+                placeholder="Buscar..."
+              />
+              <ul id="suggestions-list2"></ul>
+            </div>
+          </div>
+          <div class="form-group-new">
+            <label for="quantity">Cantidad</label>
+            <input
+              type="text"
+              id="quantity"
+              name="quantity"
+              placeholder="Cantidad del producto"
+            />
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn-close">Cerrar</button>
+            <button type="submit" class="btn-save">Guardar producto</button>
+          </div>
+        </form>
+      </div>
     </div>
+    <div class="modal" id="newFacturaExitosa">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h2>Factura Existosa</h2>
+            <span class="close" id="closeFact">&times;</span>
+          </div>
+          <div class="modal-body">
+            <div class="factura-container">
+                <h1 class="factura-titulo">Factura Electrónica</h1>
+                <div class="factura-header">
+                    <div class="emisor">
+                        <h2 class="subtitulo">Emisor</h2>
+                        <p class="texto">Hardware Store</p>
+                        <p class="texto">Dirección: Calle Principal 123</p>
+                        <p class="texto">Barranquilla, Colombia</p>
+                    </div>
+                    <div class="cliente">
+                        <h2 class="subtitulo">Cliente</h2>
+                        <p class="texto" id="nameclient">Nombre del Cliente</p>
+                        <p class="texto" id="addressclient">Dirección del Cliente</p>
+                        <p class="texto" id="identificacionclient">Identificacion</p>
+                    </div>
+                </div>
+        
+                <div class="factura-info">
+                    <p class="texto" id="numberfactura"><strong class="negrita">Número de Factura:</strong> FE-2023-001</p>
+                    <p class="texto" id="fechaemit"><strong class="negrita">Fecha de Emisión:</strong> 15/05/2023</p>
+                </div>
+        
+                <table class="tabla-productos">
+                    <thead>
+                        <tr class="fila-encabezado">
+                            <th class="celda-encabezado">Nombre</th>
+                            <th class="celda-encabezado">Cantidad</th>
+                            <th class="celda-encabezado">Precio Unitario</th>
+                            <th class="celda-encabezado">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="factura-table-content">
+                   
+                    </tbody>
+                </table>
+        
+                <div class="totales">
+                    <table class="tabla-totales">
+                        <tr class="fila-total">
+                            <td class="celda-total">Subtotal:</td>
+                            <td class="celda-total" id="numeritoacambiarsubtotal"></td>
+                        </tr>
+                        <tr class="fila-total">
+                            <td class="celda-total">IVA (19%):</td>
+                            <td class="celda-total" id="numeritoacambiaiva"></td>
+                        </tr>
+                        <tr class="fila-total">
+                            <td class="celda-total"><strong class="negrita">Total:</strong></td>
+                            <td class="celda-total"><strong class="negrita" id="numeritoacambiartotal"></strong></td>
+                        </tr>
+                    </table>
+                </div>
+        
+                <div class="pago-info">
+                    <h2 class="subtitulo">Información de Pago</h2>
+                    <p class="texto" id="mediopago"></p>
+                    
+                </div>
+        
+                <div class="notas">
+                    <h2 class="subtitulo">Notas</h2>
+                    <textarea class="area-texto" rows="4" cols="50" placeholder="Términos y condiciones o notas adicionales"></textarea>
+                </div>
+        
+                <div class="acciones">
+                    <a href="#" class="boton boton-secundario">Imprimir</a>
+                    <a href="#" class="boton boton-primario">Enviar por Email</a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="newFacturaFracaso">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h2>Factura Fracaso</h2>
+            <span class="close" id="closeFact">&times;</span>
+          </div>
+      </div>
     <script src="../scripts/scripts_interfaces/Nfactura.js"></script>
     <footer>
-        <p>© 2024 - Luxing</p>
+      <p>© 2024 - Luxing</p>
     </footer>
-</body>
+  </body>
 </html>

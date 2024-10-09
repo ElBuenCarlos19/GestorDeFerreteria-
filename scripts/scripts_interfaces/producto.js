@@ -148,7 +148,6 @@ async function fillTable(tablesFill) {
 }
 
 function fill(data) {
-  console.log(data, "alaaa");
   const tbody = document.getElementById("table-content");
   if (data.length === 0) {
       return;
