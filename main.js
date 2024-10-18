@@ -8,8 +8,8 @@ const {
   FillTables,
   searchrowwhere,
 } = require("./scripts/search");
-const { table } = require("console");
-
+const { deleteOneRow } = require("./scripts/delete");
+const nodemailer = require("nodemailer");
 // Proceso de renderizado(Cliente) y proceso principal(node)
 function createWindow() {
   const win = new BrowserWindow({
@@ -121,7 +121,6 @@ function createWindow() {
         }
       }
       win.webContents.send("returngenerate", 1);
-
     } catch (error) {
       console.error("Error al buscar producto:", error.message);
     }
@@ -129,16 +128,54 @@ function createWindow() {
 
   ipcMain.on("buscarcampoconwhere", async (event, data) => {
     try {
-      let datita = []
+      let datita = [];
       for (let i = 0; i < data.length; i++) {
         datita.push(await searchrowwhere(data[i]));
       }
       win.webContents.send("returndataconwhere", datita);
-      
     } catch (error) {
       console.error("Error al buscar producto:", error.message);
     }
+  });
 
+  ipcMain.on("deleterow", async (event, data) => {
+    try {
+      const error = await deleteOneRow(data);
+      win.webContents.send("returndeleterow", error);
+    } catch (error) {
+      console.error("Error al eliminar producto:", error.message);
+    }
+  });
+
+  ipcMain.on("enviaremail", async (event, data) => {
+    let transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: 'carlosperalta19102004@gmail.com', // Tu email
+        pass: 'ymqt zzrz zidf gopt', // Tu contraseña o App Password (si usas autenticación en dos pasos)
+      },
+    });
+  
+    let info = await transporter.sendMail({
+      from: 'Carlos Peralta carlosperalta19102004@gmail.com', // Nombre del remitente
+      to: 'david.a.guzman26@gmail.com', // Destinatario
+      subject: 'Factura Electronica', // Asunto del correo
+      text: data.noutes, // Cuerpo del mensaje en texto plano
+      html: data.html_content, // Cuerpo del mensaje en HTML
+    });
+  
+    console.log('Correo enviado: %s', info.messageId);
+  });
+
+  ipcMain.on("updaterow", async (event, data) => {
+    try {
+      const error = await updateOneRow(data);
+      win.webContents.send("returnupdaterow", error);
+    } catch (error) {
+      console.error("Error al actualizar producto:", error.message);
+    }
   });
 }
 

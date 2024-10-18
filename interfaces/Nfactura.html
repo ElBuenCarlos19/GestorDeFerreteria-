@@ -6,6 +6,8 @@
     <title>Nueva Factura</title>
     <link rel="stylesheet" href="../styles/principal.css" />
     <link rel="stylesheet" href="../styles/New.css" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+
   </head>
   <body>
     <header>
@@ -139,7 +141,8 @@
             <span class="close" id="closeFact">&times;</span>
           </div>
           <div class="modal-body">
-            <div class="factura-container">
+            <div id="envioemail">
+              <div class="factura-container">
                 <h1 class="factura-titulo">Factura Electrónica</h1>
                 <div class="factura-header">
                     <div class="emisor">
@@ -195,19 +198,20 @@
                 <div class="pago-info">
                     <h2 class="subtitulo">Información de Pago</h2>
                     <p class="texto" id="mediopago"></p>
-                    
-                </div>
-        
-                <div class="notas">
-                    <h2 class="subtitulo">Notas</h2>
-                    <textarea class="area-texto" rows="4" cols="50" placeholder="Términos y condiciones o notas adicionales"></textarea>
-                </div>
-        
-                <div class="acciones">
-                    <a href="#" class="boton boton-secundario">Imprimir</a>
-                    <a href="#" class="boton boton-primario">Enviar por Email</a>
                 </div>
             </div>
+                
+            </div>
+              <div class="notas">
+                <h2 class="subtitulo">Notas</h2>
+                <textarea class="area-texto" rows="4" cols="50" placeholder="Términos y condiciones o notas adicionales" id="notas"></textarea>
+            </div>
+    
+            <div class="acciones">
+                <a href="#" class="boton boton-primario" onclick="enviaremail()">Enviar por Email</a>
+            </div>
+       
+            
         </div>
       </div>
     </div>

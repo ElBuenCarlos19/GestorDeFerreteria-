@@ -1,8 +1,8 @@
-const { parse } = require("dotenv");
 const { ipcRenderer } = require("electron");
 var opcionesJSON = [];
 var selectedClientId;
 var OpcionesJSONProductos = [];
+var selectedEmail;
 var selectedProductId;
 var selectedProductcode;
 var selectedPrice;
@@ -10,7 +10,7 @@ var cantidadTotal = 0;
 var nameclient;
 var Productosafacturar = [];
 document.addEventListener("DOMContentLoaded", function () {
-  const dataSearch = ["client", "names", "lastnames", "clientid"]; // 0 es nombre de la tabla, 1 es la columna a buscar
+  const dataSearch = ["client", "names", "lastnames", "clientid", "email"]; // 0 es nombre de la tabla, 1 es la columna a buscar
   ipcRenderer.send("sendsearchallrows", { dataSearch });
 });
 
@@ -39,6 +39,7 @@ function mostrarSugerencias(opciones) {
       li.addEventListener("click", function () {
         searchInput.value = opcion.names + " " + opcion.lastnames;
         selectedClientId = opcion.clientid;
+        selectedEmail = opcion.email;
         nameclient = opcion.names + " " + opcion.lastnames;
         suggestionsList.style.display = "none";
       });
@@ -292,4 +293,16 @@ for (let row of tbodyOriginal.rows) {
         newCell.innerHTML = row.cells[i].innerHTML;  // Copiar el contenido de la celda original
     }
 }
+}
+
+function enviaremail() {
+  const factura = document.getElementById("envioemail");
+  const notacliente = document.getElementById("notas").value;
+  const rugs = {
+    to_email: selectedEmail,
+    html_content: factura.innerHTML,
+    noutes: notacliente
+  }
+  ipcRenderer.send("enviaremail", rugs)
+  
 }

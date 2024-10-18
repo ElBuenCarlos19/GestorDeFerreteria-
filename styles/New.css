@@ -10,6 +10,7 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+
 .modal-content {
   background-color: #fefefe;
   margin: 8% auto;
@@ -224,6 +225,7 @@ th {
 
 .acciones {
   text-align: right;
+  padding: 10px 20px;
 }
 
 .boton {
@@ -256,4 +258,8 @@ th {
   .tabla-totales {
       width: 100%;
   }
+}
+
+.notas {
+  padding: 0 20px;
 }
