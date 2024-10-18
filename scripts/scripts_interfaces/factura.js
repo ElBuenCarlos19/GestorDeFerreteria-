@@ -1,22 +1,5 @@
 const { ipcRenderer } = require("electron");
 
-modal = document.getElementById("modal");
-const btnNuevaFactura = document.querySelector(".new-invoice");
-const spanClose = document.querySelector(".close");
-
-btnNuevaFactura.onclick = function () {
-  modal.style.display = "flex";
-};
-
-spanClose.onclick = function () {
-  modal.style.display = "none";
-};
-
-window.onclick = function (event) {
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
-};
 
 function send() {
     const search = document.getElementById("search").value;
@@ -24,28 +7,29 @@ function send() {
     ipcRenderer.send('sendsearch', {search, dataSearch});
 }
 
-
-ipcRenderer.on('returndata', (event, data) => {
-  const miDiv = document.getElementById('table-container');
-
-  while (miDiv.firstChild) {
-      miDiv.removeChild(miDiv.firstChild);
-  }
-  for(let i = 0; i < data.length; i++){
-      const p = document.createElement('p');
-      p.textContent = data[i].invoicecode;
-      miDiv.appendChild(p);
-  }
+document.addEventListener('DOMContentLoaded', function () {
+  const tablesFill = {
+    table: "invoice",
+    row: {
+      invoicecode: "invoicecode",
+      paymentmethod: "paymentmethod",
+      totalamount: "totalamount",
+      datetime: "datetime",
+    },
+  };
+  console.log("ghkapsjd")
+  fillTable(tablesFill);
 
 })
 
 async function fillTable(tablesFill) {
   ipcRenderer.send("sendFillTable", tablesFill);
   ipcRenderer.on("returnfilltable", (event, data) => {
-    fill(data);
+
+    fill(data); 
+     
   });
 }
-
 function fill(data) {
   const tbody = document.getElementById("table-content");
   if (data.length === 0) {
@@ -58,7 +42,9 @@ function fill(data) {
 
   data.forEach((item) => {
     const row = document.createElement("tr");
+    item.datetime = item.datetime.slice(0, 19).replace("T", " ");
     Object.values(item).forEach((value) => {
+      
       const td = document.createElement("td");
       if (typeof value === "object" && value !== null) {
         td.textContent = Object.values(value).join(", ");
