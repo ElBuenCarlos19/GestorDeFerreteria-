@@ -154,7 +154,7 @@ function createWindow() {
       secure: false,
       auth: {
         user: 'carlosperalta19102004@gmail.com', // Tu email
-        pass: 'ymqt zzrz zidf gopt', // Tu contraseña o App Password (si usas autenticación en dos pasos)
+        pass: '', // Tu contraseña o App Password (si usas autenticación en dos pasos)
       },
     });
   
