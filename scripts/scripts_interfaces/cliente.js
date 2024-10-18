@@ -131,12 +131,13 @@ function fill(data) {
         
       });
       const actionCell = document.createElement("td");
+      actionCell.className = "action-cell";
         const updateBtn = document.createElement("button");
-        updateBtn.textContent = "Actualizar";
+        updateBtn.textContent = "​​​🔄";
         updateBtn.className = "action-btn update-btn";
         updateBtn.setAttribute("aria-label", "Actualizar item");
         const deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "Eliminar";
+        deleteBtn.textContent = "​❌";
         deleteBtn.className = "action-btn delete-btn";
         deleteBtn.setAttribute("aria-label", "Eliminar item");
         actionCell.appendChild(updateBtn);

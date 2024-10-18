@@ -183,7 +183,6 @@ function fill(data) {
     updateBtn.onclick = function () {
       const modal = document.getElementById("newProductModal");
       modal.style.display = "block";
-     
 
       // Si el usuario confirma, procedemos con la actualización
       if (isConfirmed) {
