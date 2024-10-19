@@ -13,9 +13,6 @@
         <nav>
             <ul>
                 <div class="nav-left">
-                    <li><a href="#">Inventario</a></li>
-                </div>
-                <div class="nav-left">
                     <li><a href="./factura.html">Facturas</a></li>
                 </div>
                 <div class="nav-left">
@@ -26,6 +23,9 @@
                 </div>
                 <div class="nav-left">
                     <li><a href="./usuarios.html">Usuarios</a></li>
+                </div>
+                <div class="nav-left">
+                    <li><a href="./estadisticas.html">Estadisticas</a></li>
                 </div>
                 <div class="nav-left">
                     <li><a href="./configuracion.html">Configuración</a></li>
@@ -50,7 +50,7 @@
             <div class="form-group">
                 <label for="product-search">Cliente o # de factura</label>
                 <input type="text" id="product-search" placeholder="Nombre del cliente o # de factura">
-                <button type="submit" class="search-btn">Buscar</button>
+                <button type="submit" class="search-btn" onclick="send()">🔍</button>
                 <button class="new-invoice-btn"> <a href="Nfactura.html">+ Nueva factura</a></button>
             </div> 
         </form>

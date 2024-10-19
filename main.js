@@ -27,10 +27,6 @@ function createWindow() {
   win.on("minimize", (event) => {
     event.preventDefault();
   });
-
-  win.on("closed", () => {
-    win = null;
-  });
   ipcMain.on("sendvalidationusuario", async (event, data) => {
     try {
       const resultado = await verificarCredenciales(
